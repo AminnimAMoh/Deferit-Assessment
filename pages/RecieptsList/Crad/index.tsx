@@ -9,7 +9,7 @@ function Card({img: {thumbnail, url}, amount, date, status}: Data): ReactElement
             <Image src={thumbnail} alt='content' width='100' height='100' />
             <p>{amount}</p>
             <p>{date}</p>
-            <p>{status}</p>
+            <p className={styles.container__status}>{status}</p>
         </div>
     )
 }

@@ -1,9 +1,11 @@
-import type { NextPage } from 'next'
-import dynamic from 'next/dynamic'
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import type { NextPage } from "next";
+import dynamic from "next/dynamic";
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
 
-const RecieptsList=dynamic(()=> import('./RecieptsList'))
+// const Heading = dynamic(() => import("./Heading"));
+
+const RecieptsList = dynamic(() => import("./RecieptsList"));
 
 const Home: NextPage = () => {
   return (
@@ -15,11 +17,10 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <RecieptsList/>
+        <RecieptsList />
       </main>
-
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
