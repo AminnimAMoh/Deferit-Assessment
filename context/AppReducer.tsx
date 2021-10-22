@@ -15,7 +15,7 @@ export const AppReducer=(state: any, action:any)=>{
         case "preview/close_priview":{
             return {
                 ...state,
-                previewState: true,
+                previewState: false,
                 url: '',
             }
         }

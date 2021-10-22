@@ -11,6 +11,7 @@ const RecieptsList = dynamic(() => import("./RecieptsList"));
 
 const Home: NextPage = () => {
   const {state: {previewState, url}}=useAppContext();
+
   return (
     <div className={styles.container}>
       <Head>
