@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import styles from '../../styles/Heading.module.scss'
+import styles from '../../../styles/Heading.module.scss'
 
 function Heading(): ReactElement {
     return (

@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { Data } from "../../types/GlobalType";
 
 const Card = dynamic(() => import("./Crad"));
-const Heading = dynamic(() => import("../Heading"));
+const Heading = dynamic(() => import("../Shared-Components/Heading"));
 
 export const getServerSideProps = async () => {
   const data = await request();

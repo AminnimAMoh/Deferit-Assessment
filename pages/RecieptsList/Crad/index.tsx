@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Data } from "../../../types/GlobalType";
 import styles from "../../../styles/Card.module.scss";
 import useHover from "../../../hooks/useHover";
-import Snackbar from "../../Shared-Components/Snackbar";
+import Snackbar from "../../Shared-Components/Snakbar";
 
 function Card({
   img: { thumbnail, url },

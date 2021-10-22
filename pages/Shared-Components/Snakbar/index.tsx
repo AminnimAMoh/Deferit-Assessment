@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import styles from "../../styles/SnackBar.module.scss";
+import styles from "../../../styles/SnackBar.module.scss";
 
 interface Props {
   hoverValue: boolean;
