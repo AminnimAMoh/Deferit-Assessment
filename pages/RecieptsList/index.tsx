@@ -2,9 +2,9 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { request } from "../../context/AppFetch";
 import dynamic from "next/dynamic";
 import { Data } from "../../types/GlobalType";
+import styles from '../../styles/RecieptsList.module.scss'
 
 const Card = dynamic(() => import("./Crad"));
-const Heading = dynamic(() => import("../Shared-Components/Heading"));
 
 export const getServerSideProps = async () => {
   const data = await request();
@@ -26,8 +26,7 @@ function RecieptsList(): ReactElement {
   }, []);
 
   return (
-    <div style={{width:'100%'}}>
-              <Heading />
+    <div className={styles.container}>
       {listData && listData.map((data, index) => {
           return (
               <Card key={index} {...data}/>

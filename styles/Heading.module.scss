@@ -1,3 +1,5 @@
+$mobile: 620px;
+
 .container{
     width: 100%;
     display: flex;
@@ -14,5 +16,8 @@
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+    }
+    @media screen and (max-width: $mobile){
+        display: none;
     }
 }

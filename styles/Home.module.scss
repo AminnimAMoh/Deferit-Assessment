@@ -1,3 +1,5 @@
+$mobile: 620px;
+
 .container {
   min-height: 100vh;
   padding: 1em 5.5rem;
@@ -16,6 +18,11 @@
     align-items: center;
     background-color: #f9de68;
     border-radius: 8px;
+    @media screen and (max-width: $mobile) {
+      padding: 1em 1.5rem;
+    }
+  }
+  @media screen and (max-width: $mobile) {
+    padding: 1em 1.5rem;
   }
 }
-

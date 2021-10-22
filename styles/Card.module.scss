@@ -1,3 +1,5 @@
+$mobile: 620px;
+
 .container {
   position: relative;
   width: 100%;
@@ -9,6 +11,9 @@
   padding: 8px;
   margin: 4px;
   border-bottom: solid 0.5px black;
+  &__Image{
+    cursor: pointer;
+  }
   &__status {
     width: 100px;
     overflow: hidden;
@@ -26,5 +31,8 @@
     box-shadow: none;
     border-bottom: solid 0.5px black;
     border-radius: none;
+  }
+  @media screen and (max-width: $mobile) {
+    flex-direction: column;
   }
 }

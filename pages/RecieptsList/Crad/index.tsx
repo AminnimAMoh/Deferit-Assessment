@@ -20,7 +20,7 @@ function Card({
   }
   return (
     <div ref={hoverRef} className={styles[hoverValue ?'container__open' : 'container__close']}>
-      <Image src={thumbnail} alt="content" width="100" height="100" onClick={()=> showPreview(url)} />
+      <Image src={thumbnail} alt="content" className={styles.container__Image} width="100" height="100" onClick={()=> showPreview(url)} />
       <p>{amount}</p>
       <p>{date}</p>
       <p className={styles.container__status}>{status}</p>
