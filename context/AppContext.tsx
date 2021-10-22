@@ -3,15 +3,27 @@ import {
   useContext,
   useMemo,
   useReducer,
-  useEffect,
 } from "react";
 
+import { AppReducer, initialState } from "./AppReducer";
 const AppContext=createContext({});
 
+interface PageState{
+    previewState: boolean,
+    url: string
+}
 export function AppWrapper({children}: any){
-    const [state, dispatch]= useReducer(AppReducer, initialState);
+    const [state, dispatch] = useReducer(AppReducer, initialState);
 
-    useEffect(()=>{
-        
-    })
+    const contextvalue= useMemo(()=>{
+        return {state, dispatch};
+    }, [state, dispatch]);
+
+    return (
+        <AppContext.Provider value={contextvalue}>{children}</AppContext.Provider>
+    )
+}
+
+export function useAppContext(){
+    return useContext(AppContext) as PageState;
 }

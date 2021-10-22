@@ -5,8 +5,17 @@ export const initialState={
 
 export const AppReducer=(state: any, action:any)=>{
     switch (action.type){
-        case "":{
-            
+        case "preview/open_priview":{
+            return {
+                ...state,
+                previewState: true
+            }
+        }
+        case "preview/close_priview":{
+            return {
+                ...state,
+                previewState: true
+            }
         }
     }
 }

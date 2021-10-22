@@ -4,6 +4,7 @@ import { Data } from "../../../types/GlobalType";
 import styles from "../../../styles/Card.module.scss";
 import useHover from "../../../hooks/useHover";
 import Snackbar from "../../Shared-Components/Snakbar";
+import {useAppContext} from '../../../context/AppContext'
 
 function Card({
   img: { thumbnail, url },
@@ -11,10 +12,15 @@ function Card({
   date,
   status,
 }: Data): ReactElement {
+  const {state, dispatch}=useAppContext();
   const [hoverRef, hoverValue] = useHover<HTMLDivElement>();
+
+  const showPreview=(url: string)=>{
+    
+  }
   return (
     <div ref={hoverRef} className={styles[hoverValue ?'container__open' : 'container__close']}>
-      <Image src={thumbnail} alt="content" width="100" height="100" />
+      <Image src={thumbnail} alt="content" width="100" height="100" onClick={()=> showPreview(url)} />
       <p>{amount}</p>
       <p>{date}</p>
       <p className={styles.container__status}>{status}</p>
