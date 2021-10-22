@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Home.module.scss";
 
 // const Heading = dynamic(() => import("./Heading"));
 
@@ -16,7 +16,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <main className={styles.container__main}>
         <RecieptsList />
       </main>
     </div>
