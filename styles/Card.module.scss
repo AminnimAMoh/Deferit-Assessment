@@ -34,5 +34,6 @@ $mobile: 620px;
   }
   @media screen and (max-width: $mobile) {
     flex-direction: column;
+    text-align: center;
   }
 }
