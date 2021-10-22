@@ -12,11 +12,11 @@ function Card({
   date,
   status,
 }: Data): ReactElement {
-  const {state, dispatch}=useAppContext();
+  const {dispatch}=useAppContext();
   const [hoverRef, hoverValue] = useHover<HTMLDivElement>();
 
   const showPreview=(url: string)=>{
-    
+    dispatch({type: "preview/open_priview", value: url})
   }
   return (
     <div ref={hoverRef} className={styles[hoverValue ?'container__open' : 'container__close']}>
