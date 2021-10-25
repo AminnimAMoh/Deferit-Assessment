@@ -1,36 +1,35 @@
-import React, { ReactElement, useState, useEffect } from 'react'
-import {Data} from '../types/GlobalType'
-import {request} from '../context/AppFetch'
+import React, { ReactElement, useState, useEffect } from "react";
+import { Data } from "../types/GlobalType";
+import { request } from "../context/AppFetch";
+import { useAppContext } from "../context/AppContext"; 
 
-interface Request{
-        props: Data[];
+interface Request {
+  props: Data[];
 }
 
-interface Props{
-    pageNumber: number;
-}
+function usePagination(): any {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(true);
+  const [data, setData] = useState<Data[]>([]);
+  const [hasMore, setHasMore] = useState<boolean>(false);
+  const {state: {pageNumber}}=useAppContext()
 
-function usePagination({pageNumber}: Props): any {
-    const [loading, setLoading]=useState<boolean>(false);
-    const [error, setError]=useState<boolean>(true);
-    const [data, setData]=useState<Data[]>([]);
-    const [hasMore, setHasMore]=useState<boolean>(false);
-
-    useEffect(()=>{
-        setLoading(true)
-        setError(false);
-        request(pageNumber).then((res)=>{
-            setData(preVal=> {
-                return [...preVal, ...res]
-            })
-            setLoading(false)
-        }).catch(err=>{
-            console.log(err);
-            setError(true)
+  useEffect(() => {
+    setLoading(true);
+    setError(false);
+    request(pageNumber)
+      .then((res) => {
+        setData((preVal) => {
+          return [...preVal, ...res];
         });
-        
-    }, [pageNumber])
-    return {loading, error, data, hasMore}
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(true);
+      });
+  }, [pageNumber]);
+  return { loading, error, data, hasMore };
 }
 
-export default usePagination
+export default usePagination;

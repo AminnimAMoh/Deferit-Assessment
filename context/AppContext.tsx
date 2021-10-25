@@ -8,6 +8,7 @@ interface PageState {
   state: {
     previewState: boolean;
     url: string;
+    pageNumber: number;
   };
 }
 export function AppWrapper({ children }: any) {
