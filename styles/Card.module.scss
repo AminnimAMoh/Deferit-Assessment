@@ -11,10 +11,17 @@ $mobile: 620px;
   padding: 8px;
   margin: 4px;
   border-bottom: solid 0.5px black;
+  text-align: center;
   &__Image{
     cursor: pointer;
   }
   &__status {
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  &__info{
     width: 100px;
     overflow: hidden;
     white-space: nowrap;
@@ -34,6 +41,5 @@ $mobile: 620px;
   }
   @media screen and (max-width: $mobile) {
     flex-direction: column;
-    text-align: center;
   }
 }

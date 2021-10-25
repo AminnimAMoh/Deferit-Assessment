@@ -7,7 +7,7 @@ import React, {
   ComponentType,
   RefObject,
 } from "react";
-import { request } from "../../context/AppFetch";
+import { request } from "../api/AppFetch";
 import usePagination from "../../hooks/usePagination";
 import { useAppContext } from "../../context/AppContext";
 import dynamic from "next/dynamic";
@@ -15,6 +15,7 @@ import { Data } from "../../types/GlobalType";
 import styles from "../../styles/RecieptsList.module.scss";
 
 const Card = dynamic(() => import("./Crad"));
+const Heading=dynamic(()=> import("../Shared-Components/Heading"))
 
 export const getServerSideProps = async () => {
   const data = await request(1);
@@ -48,6 +49,7 @@ function RecieptsList(): ReactElement {
 
   return (
     <div className={styles.container}>
+      <Heading/>
       {data.length > 0 &&
         data.map((d: Data, index: number) => {
           return data.length === index + 1 ? (

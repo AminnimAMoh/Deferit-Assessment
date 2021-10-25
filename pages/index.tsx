@@ -8,7 +8,6 @@ import ImagePreview from "./Shared-Components/ImagePreview";
 // const Heading = dynamic(() => import("./Heading"));
 
 const RecieptsList = dynamic(() => import("./RecieptsList"));
-const Heading = dynamic(() => import("./Shared-Components/Heading"));
 
 const Home: NextPage = () => {
   const {
@@ -24,7 +23,6 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.container__main}>
-        <Heading />
         {previewState && <ImagePreview url={url} />}
         <RecieptsList />
       </main>

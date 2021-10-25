@@ -1,4 +1,14 @@
 $mobile: 620px;
+$transitionSettings: opacity 0.3s ease-in 0.2s;
+
+@mixin transition($aspect, $duration, $effect, $delay) {
+  -webkit-transition: $aspect $duration $effect $delay;
+  -moz-transition: $aspect $duration $effect $delay;
+  -ms-transition: $aspect $duration $effect $delay;
+  -o-transition: $aspect $duration $effect $delay;
+  transition: $aspect $duration $effect $delay;
+}
+
 .container {
   position: absolute;
   right: 0;
@@ -6,32 +16,32 @@ $mobile: 620px;
   height: 100%;
   border-radius: 8px;
   background-color: white;
-  transition: width 1.5s ease-in-out;
   padding: 8px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
   z-index: 1;
   opacity: 0;
-  transition: opacity .3s ease-in .2s;
   overflow: hidden;
+  text-align: start;
+  @include transition(opacity, 0.3s, ease-in, 0.2s);
   &__status {
-    width: 200px;
+    width: 250px;
     height: auto;
     overflow: hidden;
     white-space: normal;
     text-overflow: ellipsis;
-    &__default{
+    &__default {
       @extend .container__status;
       color: red;
     }
-    &__processing{
+    &__processing {
       @extend .container__status;
       color: orange;
     }
-    &__scheduled{
+    &__scheduled {
       @extend .container__status;
       color: Indigo;
     }
-    &__paid{
+    &__paid {
       @extend .container__status;
       color: green;
     }
@@ -43,7 +53,7 @@ $mobile: 620px;
     @media screen and (max-width: $mobile) {
       bottom: 0;
       left: 50%;
-      transform: translateX(-50%)
+      transform: translateX(-50%);
     }
   }
   &__close {
@@ -53,7 +63,8 @@ $mobile: 620px;
     @media screen and (max-width: $mobile) {
       bottom: 0;
       left: 50%;
-      transform: translateX(-50%)
+      transform: translateX(-50%);
     }
   }
 }
+

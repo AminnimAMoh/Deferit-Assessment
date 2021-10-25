@@ -28,8 +28,8 @@ function Card({ id, img, amount, date, status }: Data): ReactElement {
           onClick={() => showPreview(img.url)}
         />
       )}
-      <p>{amount}</p>
-      <p>{date}</p>
+      <p className={styles.container__info}>{amount}</p>
+      <p className={styles.container__info}>{date}</p>
       <p className={styles.container__status}>{status}</p>
       <Snackbar hoverValue={hoverValue} status={status} />
     </div>

@@ -7,12 +7,13 @@ $mobile: 620px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 34px;
+    padding: 8px;
     margin: 4px;
     border-bottom: solid .5px black;
-    &> h2{
+    text-align: center;
+    &> h4{
         color:#3646c0;
-        width:70px;
+        width:100px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;

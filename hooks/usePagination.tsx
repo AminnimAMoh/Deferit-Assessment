@@ -1,6 +1,6 @@
 import React, { ReactElement, useState, useEffect } from "react";
 import { Data } from "../types/GlobalType";
-import { request } from "../context/AppFetch";
+import { request } from "../pages/api/AppFetch";
 import { useAppContext } from "../context/AppContext";
 
 interface Request {
