@@ -2,6 +2,8 @@ import React, {
   ReactElement,
   useRef,
   useCallback,
+  useState,
+  useEffect,
   ComponentType,
   RefObject,
 } from "react";
@@ -23,17 +25,30 @@ export const getServerSideProps = async () => {
 
 function RecieptsList(): ReactElement {
   const { data, loading, error } = usePagination({ pageNumber: 1 });
-
+  const [nodeCopy, setNodeCopy] = useState(null);
+  const [pageNumber, setPageNumber]=useState<number>(1);
   //As the type check getting on my way I put the reference type as any.
   const observer = useRef<any>();
+
+  //As I am mutating the current every time the last element on the list changes
+  //The is a chance to lose track so it is better to keep track of the previous 'current' state.
+  //Solution from: https://non-traditional.dev/how-to-use-an-intersectionobserver-in-a-react-hook-9fb061ac6cb5
+  useEffect(() => {
+    const { current: currentObserver } = observer;
+    if (nodeCopy) currentObserver.observe(nodeCopy);
+    return () => currentObserver.disconnect();
+  }, [nodeCopy]);
+
   const lastDataPrinted = useCallback(
     (node: HTMLDivElement): void => {
-      if(loading) return;
-      if(observer.current) observer.current.disconnect();
-      observer.current=new IntersectionObserver(entries=>{
-        if(entries[0].isIntersecting) console.log("This is working.");
-      })
-      if(node) observer.current.observe(node);
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          console.log("This is working.");
+        }
+      });
+      if (node) observer.current.observe(node);
       console.log(node);
     },
     [loading]
@@ -45,14 +60,14 @@ function RecieptsList(): ReactElement {
         data.map((d: Data, index: number) => {
           return data.length === index + 1 ? (
             <div ref={lastDataPrinted} key={index}>
-            <Card  {...d} />
+              <Card {...d} />
             </div>
           ) : (
             <Card key={index} {...d} />
           );
         })}
-        {loading && <p>Loading...</p>}
-        {error && <p>Somthing went wrong!!!</p>}
+      {loading && <p>Loading...</p>}
+      {error && <p>Somthing went wrong!!!</p>}
     </div>
   );
 }
