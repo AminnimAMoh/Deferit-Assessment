@@ -7,6 +7,7 @@ import Snackbar from "../../Shared-Components/Snakbar";
 import { useAppContext } from "../../../context/AppContext";
 
 function Card({
+  id,
   img,
   amount,
   date,

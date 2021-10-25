@@ -16,16 +16,17 @@ function usePagination({pageNumber}: Props): any {
     const [data, setData]=useState<Data[]>([]);
     const [hasMore, setHasMore]=useState<boolean>(false);
 
-
     useEffect(()=>{
         setLoading(true)
         setError(false);
         request(pageNumber).then((res)=>{
             setData(preVal=> {
-                return [...preVal,res]
+                return [...preVal, ...res]
             })
+            setLoading(false)
         }).catch(err=>{
             console.log(err);
+            setError(true)
         });
         
     }, [pageNumber])
