@@ -6,24 +6,28 @@ interface Props {
   status: string;
 }
 
+
 function Snackbar({ hoverValue, status }: Props): ReactElement {
+  const statusPrompts: any = {
+    processing:
+      "This bill is currently in processing, it can take approx. 1-2 hours depending on the time of day.",
+    scheduled:
+      "This bill is scheduled to be paid and will be paid on the due date, you are in good hands.",
+    paid: "The full amount for this receipt is paid. No payment is required.",
+    default:
+      "There was a problem with your payment. Please update the payment method.",
+  };
+  console.log(`${status}`);
+  
   return (
     <div
-      className={styles[hoverValue ? 'container__open' : 'container__close']}
+      className={styles[hoverValue ? "container__open" : "container__close"]}
     >
-      <h4
-        className={styles.container__status}
-      >
-        Status: {status}
-      </h4>
-      <p
-        className={styles.container__status}
-      >
-        {status === "processing"
-          ? "This bill is currently in processing, it can take approx. 1-2 hours depending on the time of day."
-          : status === "scheduled"
-          ? "This bill is scheduled to be paid and will be paid on the due date, you are in good hands."
-          : "This is a dummy text. Need to fill in."}
+      <h4 className={status === "unable to pay" ? styles["container__status__default"] : styles["container__status__"+status]}>Status: {status}</h4>
+      <p className={styles.container__status}>
+        {status === "unable to pay"
+          ? statusPrompts.default
+          : statusPrompts[`${status}`]}
       </p>
     </div>
   );

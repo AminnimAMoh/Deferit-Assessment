@@ -19,6 +19,22 @@ $mobile: 620px;
     overflow: hidden;
     white-space: normal;
     text-overflow: ellipsis;
+    &__default{
+      @extend .container__status;
+      color: red;
+    }
+    &__processing{
+      @extend .container__status;
+      color: orange;
+    }
+    &__scheduled{
+      @extend .container__status;
+      color: Indigo;
+    }
+    &__paid{
+      @extend .container__status;
+      color: green;
+    }
   }
   &__open {
     @extend .container;

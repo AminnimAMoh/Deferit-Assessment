@@ -31,8 +31,6 @@ function RecieptsList(): ReactElement {
   // const [pageNumber, setPageNumber]=useState<number>(1);
   //As the type check getting on my way I put the reference type as any.
   const observer = useRef<any>();
-
-  console.log(hasMore);
   
   const lastDataPrinted = useCallback(
     (node: HTMLDivElement): void => {

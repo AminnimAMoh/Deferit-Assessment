@@ -29,12 +29,10 @@ function usePagination(): any {
           return [...preVal, ...res.data];
         });
         setLoading(false);
-        console.log(res.end);
-        
         if(res.end===pageNumber) setHasMore(false)
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.status);
         setError(true);
       });
   }, [pageNumber]);
