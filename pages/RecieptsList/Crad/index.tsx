@@ -6,13 +6,7 @@ import useHover from "../../../hooks/useHover";
 import Snackbar from "../../Shared-Components/Snakbar";
 import { useAppContext } from "../../../context/AppContext";
 
-function Card({
-  id,
-  img,
-  amount,
-  date,
-  status,
-}: Data): ReactElement {
+function Card({ id, img, amount, date, status }: Data): ReactElement {
   const { dispatch } = useAppContext();
   const [hoverRef, hoverValue] = useHover<HTMLDivElement>();
 

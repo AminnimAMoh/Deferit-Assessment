@@ -1,10 +1,9 @@
 import React, {
   ReactElement,
-  useEffect,
-  useState,
   useRef,
   useCallback,
   ComponentType,
+  RefObject,
 } from "react";
 import { request } from "../../context/AppFetch";
 import usePagination from "../../hooks/usePagination";
@@ -23,15 +22,21 @@ export const getServerSideProps = async () => {
 };
 
 function RecieptsList(): ReactElement {
-  const [listData, setListData] = useState<Data[]>();
   const { data, loading, error } = usePagination({ pageNumber: 1 });
 
-  const observer = useRef<HTMLDivElement | null>(null);
+  //As the type check getting on my way I put the reference type as any.
+  const observer = useRef<any>();
   const lastDataPrinted = useCallback(
     (node: HTMLDivElement): void => {
+      if(loading) return;
+      if(observer.current) observer.current.disconnect();
+      observer.current=new IntersectionObserver(entries=>{
+        if(entries[0].isIntersecting) console.log("This is working.");
+      })
+      if(node) observer.current.observe(node);
       console.log(node);
     },
-    []
+    [loading]
   );
 
   return (
@@ -46,6 +51,8 @@ function RecieptsList(): ReactElement {
             <Card key={index} {...d} />
           );
         })}
+        {loading && <p>Loading...</p>}
+        {error && <p>Somthing went wrong!!!</p>}
     </div>
   );
 }
