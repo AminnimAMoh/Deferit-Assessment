@@ -1,18 +1,24 @@
 import React, { ReactElement, useState, useEffect } from "react";
 import { Data } from "../types/GlobalType";
 import { request } from "../context/AppFetch";
-import { useAppContext } from "../context/AppContext"; 
+import { useAppContext } from "../context/AppContext";
 
 interface Request {
-  props: Data[];
+  props: {
+    data: Data[];
+    end: number | undefined;
+    item?: string;
+  };
 }
 
 function usePagination(): any {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(true);
   const [data, setData] = useState<Data[]>([]);
-  const [hasMore, setHasMore] = useState<boolean>(false);
-  const {state: {pageNumber}}=useAppContext()
+  const [hasMore, setHasMore] = useState<boolean>(true);
+  const {
+    state: { pageNumber },
+  } = useAppContext();
 
   useEffect(() => {
     setLoading(true);
@@ -20,9 +26,12 @@ function usePagination(): any {
     request(pageNumber)
       .then((res) => {
         setData((preVal) => {
-          return [...preVal, ...res];
+          return [...preVal, ...res.data];
         });
         setLoading(false);
+        console.log(res.end);
+        
+        if(res.end===pageNumber) setHasMore(false)
       })
       .catch((err) => {
         console.log(err);

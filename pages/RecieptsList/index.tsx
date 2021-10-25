@@ -18,7 +18,7 @@ const Card = dynamic(() => import("./Crad"));
 
 export const getServerSideProps = async () => {
   const data = await request(1);
-  if (data.items === "error") {
+  if (data.item === "error") {
     console.log("error");
   }
   return { props: { ...data } };
@@ -26,34 +26,24 @@ export const getServerSideProps = async () => {
 
 function RecieptsList(): ReactElement {
   const {state: {pageNumber}, dispatch} = useAppContext();
-  const { data, loading, error } = usePagination({ pageNumber: 1 });
-  const [nodeCopy, setNodeCopy] = useState(null);
+  const { data, loading, error, hasMore } = usePagination();
+
   // const [pageNumber, setPageNumber]=useState<number>(1);
   //As the type check getting on my way I put the reference type as any.
   const observer = useRef<any>();
-  console.log(pageNumber);
-  
-  //As I am mutating the current every time the last element on the list changes
-  //The is a chance to lose track so it is better to keep track of the previous 'current' state.
-  //Solution from: https://non-traditional.dev/how-to-use-an-intersectionobserver-in-a-react-hook-9fb061ac6cb5
-  useEffect(() => {
-    const { current: currentObserver } = observer;
-    if (nodeCopy) currentObserver.observe(nodeCopy);
-    return () => currentObserver.disconnect();
-  }, [nodeCopy]);
 
+  console.log(hasMore);
+  
   const lastDataPrinted = useCallback(
     (node: HTMLDivElement): void => {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-          console.log("This is working.");
+        if (entries[0].isIntersecting && hasMore) {
           dispatch({type: "paginattion/Increment-pageNumber"})
         }
       });
       if (node) observer.current.observe(node);
-      console.log(node);
     },
     [loading]
   );
