@@ -1,5 +1,6 @@
 export const defaultEndPoint =
   "https://deferit-dummy-reciepts-data.herokuapp.com/responce";
+let lastPageToLoad: number | undefined;
 
 const findLastPageNumber = (headersSlice: string): number => {
   let lastPageNO;
@@ -16,7 +17,6 @@ export async function request(pageNumber: number) {
     const responce = await fetch(
       `${defaultEndPoint}?_page=${pageNumber}&_limit=20`
     );
-    let lastPageToLoad;
     const headers = responce.headers.get("Link");
     const headersSlice = headers?.split(",");
     if (headersSlice && headersSlice[3])
