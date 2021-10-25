@@ -1,10 +1,9 @@
-export const defaultEndPoint =
-  "https://deferit-dummy-reciepts-data.herokuapp.com/responce";
+export const defaultEndPoint ='https://deferit-dummy-reciepts-data.herokuapp.com/responce'
 
-export async function request() {
+export async function request(pageNumber: number) {
   try {
     const responce = await fetch(
-      defaultEndPoint
+      `${defaultEndPoint}?_page=${pageNumber}&_limit=5`
     );
     const data = await responce.json();
     return data;
