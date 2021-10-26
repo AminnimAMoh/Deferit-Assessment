@@ -17,8 +17,7 @@ function Snackbar({ hoverValue, status }: Props): ReactElement {
     default:
       "There was a problem with your payment. Please update the payment method.",
   };
-  console.log(`${status}`);
-  
+
   return (
     <div
       className={styles[hoverValue ? "container__open" : "container__close"]}

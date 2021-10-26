@@ -32,7 +32,7 @@ function usePagination(): any {
         if(res.end===pageNumber) setHasMore(false)
       })
       .catch((err) => {
-        console.log(err.status);
+        console.log(err);
         setError(true);
       });
   }, [pageNumber]);
