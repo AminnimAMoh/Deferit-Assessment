@@ -24,6 +24,7 @@ const Home: NextPage = () => {
 
       <main className={styles.container__main}>
         {previewState && <ImagePreview url={url} />}
+        <h2>Receipts</h2>
         <RecieptsList />
       </main>
     </div>
