@@ -67,7 +67,7 @@ The colours I picked are described by their meaning in:
 
 5-To achieve screen responsiveness I decided to use flex display controlled with a media query for mobile screens.
 
-##Hooks:
+## Hooks:
 
 I have developed two costume hooks that reduce the redundancy of components and improve the readability of the code.
 
@@ -75,19 +75,19 @@ I have developed two costume hooks that reduce the redundancy of components and 
 
 2-I have developed a usePagination hook that subscribed to pageNumber from the application state and on its change sends a new query to the API and adds the response to an array to be printed on the list. This hook uses a promise so the process will be run asynchronously. usePagination also sets the loading state, error state, and controls the end of the API.
 
-##TypeScript:
+## TypeScript:
 
 I always use TypeScript in my projects governing the props, arguments, and function returns that helps code readability and prevents many production errors such as undefined, possible null, etc.
 
 Secondly, as I have used spread syntax in a few places typescript helps the reader to understand elements required in the component.
 
-##State Management:
+## State Management:
 
 I decided to use built-in state management hooks from React that limits the app dependencies on external libraries like Redux and Redux toolkit. To achieve a state management system in this project I have used useContex, useMemo, useReducer.
 
 The state is not very complicated as the project is not performing complex state controls.
 
-##Pagination:
+## Pagination:
 
 As I am using JSON-Server to serve the API, JSON-Server handles the pagination using ?\_page=2&\_limit=11 struction to apply the middleware for pagination. I have implimented the pagination using express too but it is not in use.
 
